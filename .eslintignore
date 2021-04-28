@@ -3,3 +3,6 @@ dist/
 node_modules/
 .snapshots/
 *.min.js
+/**/*.d.ts
+yarn.lock
+package.json
