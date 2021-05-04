@@ -1,10 +1,16 @@
-import React from 'react'
-
-import { ExampleComponent } from 'react-auth'
-import 'react-auth/dist/index.css'
+import React from 'react';
+import { useAuth } from '@loopstudio/react-auth';
+import AuthForms from './components/AuthForms';
+import Welcome from './components/Welcome';
 
 const App = () => {
-  return <ExampleComponent text="Create React Library Example 😄" />
-}
+  const { isLoading, isAuthenticated } = useAuth();
 
-export default App
+  if (isLoading) {
+    return <span>Loading...</span>;
+  }
+
+  return isAuthenticated ? <Welcome /> : <AuthForms />;
+};
+
+export default App;
