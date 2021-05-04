@@ -1,10 +1,13 @@
 {
   "name": "@loopstudio/react-auth",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "React auth library",
   "author": "loopstudio",
   "license": "MIT",
-  "repository": "git://github.com/loopstudio/loopstudio/react-auth",
+  "repository": "git://github.com/loopstudio/react-auth",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
@@ -44,8 +47,8 @@
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jest-dom": "^3.2.3",
-    "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-node": "^11.0.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.6",
     "eslint-plugin-react-hooks": "^4.1.2",

@@ -3,7 +3,22 @@ import React, { createContext, useState, useCallback, useEffect } from 'react';
 import AuthService from './services/AuthService';
 import { applyInterceptors, clearInterceptors } from './services/middleware';
 
-export const AuthContext = createContext();
+interface IAuthContext { 
+  isLoading: boolean;
+  isAuthenticated: boolean;
+  session: string;
+  user: object;
+  signIn: (values: any) => any | void;
+  signUp: (values: any) => any | void;
+  updateUser: (values: any) => any | void;
+  signOut: () => any | void;
+  clearSession: () => void;
+  requestPasswordReset: (values: any) => any | void;
+  verifyPasswordReset: (values: any) => any | void;
+  resetPassword: (pwd: any, resetPasswordToken: any) => any | void;
+};
+
+export const AuthContext = createContext({}  as IAuthContext);
 
 const defaultState = {
   user: null,
@@ -12,14 +27,13 @@ const defaultState = {
 };
 
 const initialState = () => {
-  const storedSession = JSON.parse(localStorage.getItem('session'));
+  const storedSession = JSON.parse(localStorage.getItem('session') as string);
   if (storedSession) {
     return { ...defaultState, session: storedSession, isLoading: true };
   }
   return defaultState;
 };
 
-// eslint-disable-next-line react/prop-types
 export const AuthProvider = ({ children, prepopulatedState, httpClient }) => {
   const [state, setState] = useState(prepopulatedState || initialState);
   const { user, session, isLoading } = state;
