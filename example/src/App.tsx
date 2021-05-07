@@ -4,6 +4,7 @@ import AuthForms from './components/AuthForms';
 import Welcome from './components/Welcome';
 
 const App = () => {
+  // @ts-ignore
   const { isLoading, isAuthenticated } = useAuth();
 
   if (isLoading) {

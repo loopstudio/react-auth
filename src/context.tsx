@@ -1,13 +1,22 @@
 import React, { createContext, useState, useCallback, useEffect } from 'react';
-
+import { AxiosInstance } from 'axios';
 import AuthService from './services/AuthService';
 import { applyInterceptors, clearInterceptors } from './services/middleware';
 
-interface IAuthContext { 
+interface ISession {
+  accessToken: string;
+  client: string;
+  uid: string;
+}
+
+interface IAuthState {
   isLoading: boolean;
+  session: ISession | null;
+  user: any;
+}
+
+interface IAuthContext extends IAuthState {
   isAuthenticated: boolean;
-  session: string;
-  user: object;
   signIn: (values: any) => any | void;
   signUp: (values: any) => any | void;
   updateUser: (values: any) => any | void;
@@ -16,9 +25,15 @@ interface IAuthContext {
   requestPasswordReset: (values: any) => any | void;
   verifyPasswordReset: (values: any) => any | void;
   resetPassword: (pwd: any, resetPasswordToken: any) => any | void;
-};
+}
 
-export const AuthContext = createContext({}  as IAuthContext);
+interface IAuthProvider {
+  children: JSX.Element;
+  prepopulatedState: IAuthState;
+  httpClient: AxiosInstance;
+}
+
+export const AuthContext = createContext({} as IAuthContext);
 
 const defaultState = {
   user: null,
@@ -34,8 +49,14 @@ const initialState = () => {
   return defaultState;
 };
 
-export const AuthProvider = ({ children, prepopulatedState, httpClient }) => {
-  const [state, setState] = useState(prepopulatedState || initialState);
+export const AuthProvider = ({
+  children,
+  prepopulatedState,
+  httpClient,
+}: IAuthProvider) => {
+  const [state, setState] = useState<IAuthState>(
+    prepopulatedState || initialState
+  );
   const { user, session, isLoading } = state;
 
   const validateSession = useCallback(async () => {

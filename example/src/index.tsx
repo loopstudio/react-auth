@@ -14,6 +14,7 @@ const httpClient = axios.create({
 applyCaseMiddleware(httpClient);
 
 ReactDOM.render(
+  // @ts-ignore
   <AuthProvider httpClient={httpClient}>
     <App />
   </AuthProvider>,
