@@ -2,7 +2,6 @@ import React, { FormEvent, useState } from 'react';
 import { useAuth } from '@loopstudio/react-auth';
 
 export default function AuthForms() {
-  // @ts-ignore
   const { signIn, signUp } = useAuth();
   const [isSignUp, setIsSignUp] = useState<boolean>(false);
   const [errors, setErrors] = useState<Array<string>>([]);

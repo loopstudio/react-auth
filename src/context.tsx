@@ -15,7 +15,7 @@ interface IAuthState {
   user: any;
 }
 
-interface IAuthContext extends IAuthState {
+export interface IAuthContext extends IAuthState {
   isAuthenticated: boolean;
   signIn: (values: any) => any | void;
   signUp: (values: any) => any | void;
