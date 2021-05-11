@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import applyCaseMiddleware from 'axios-case-converter';
@@ -14,7 +13,6 @@ const httpClient = axios.create({
 applyCaseMiddleware(httpClient);
 
 ReactDOM.render(
-  // @ts-ignore
   <AuthProvider httpClient={httpClient}>
     <App />
   </AuthProvider>,

@@ -7,7 +7,7 @@
       "esnext"
     ],
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsx": "react-jsx",
     "sourceMap": true,
     "declaration": true,
     "esModuleInterop": true,
@@ -20,13 +20,14 @@
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true,
     "target": "es5",
-    "allowJs": true,
+    "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src"

@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, useState } from 'react';
 import { useAuth } from '@loopstudio/react-auth';
 
 export default function AuthForms() {
@@ -73,11 +73,16 @@ export default function AuthForms() {
         {isSignUp ? (
           <span>
             Already have an account?{' '}
-            <button onClick={toggleType}>Sign In</button>
+            <button type="button" onClick={toggleType}>
+              Sign In
+            </button>
           </span>
         ) : (
           <span>
-            Don't have an account? <button onClick={toggleType}>Sign Up</button>
+            Don&apos;t have an account?
+            <button type="button" onClick={toggleType}>
+              Sign Up
+            </button>
           </span>
         )}
       </div>

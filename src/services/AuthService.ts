@@ -1,15 +1,17 @@
-class AuthService {
-  static httpClient;
+import {AxiosInstance} from 'axios';
 
-  static setHttpClient(client) {
+class AuthService {
+  static httpClient: AxiosInstance;
+
+  static setHttpClient(client: AxiosInstance) {
     this.httpClient = client;
   }
 
-  static signUp(user) {
+  static signUp(user: any) {
     return this.httpClient.post('/users', { user });
   }
 
-  static signIn(user) {
+  static signIn(user: any) {
     return this.httpClient.post('/users/sign_in', { user });
   }
 
@@ -21,21 +23,21 @@ class AuthService {
     return this.httpClient.get('/users/validate_token');
   }
 
-  static updateUser(user, passwordCheck) {
+  static updateUser(user: any, passwordCheck: string) {
     return this.httpClient.patch('/user', { user, passwordCheck });
   }
 
-  static requestPasswordReset(email) {
+  static requestPasswordReset(email: string) {
     return this.httpClient.post('/users/password', { email });
   }
 
-  static verifyPasswordReset(resetPasswordToken) {
+  static verifyPasswordReset(resetPasswordToken: string) {
     return this.httpClient.get('users/password/edit', {
       params: { resetPasswordToken },
     });
   }
 
-  static resetPassword(password, resetPasswordToken) {
+  static resetPassword(password: string, resetPasswordToken: string) {
     return this.httpClient.put('/users/password', {
       password,
       resetPasswordToken,

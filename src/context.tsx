@@ -1,9 +1,9 @@
-import React, { createContext, useState, useCallback, useEffect } from 'react';
+import { createContext, useState, useCallback, useEffect } from 'react';
 import { AxiosInstance } from 'axios';
 import AuthService from './services/AuthService';
 import { applyInterceptors, clearInterceptors } from './services/middleware';
 
-interface ISession {
+export interface ISession {
   accessToken: string;
   client: string;
   uid: string;
@@ -29,8 +29,8 @@ export interface IAuthContext extends IAuthState {
 
 interface IAuthProvider {
   children: JSX.Element;
-  prepopulatedState: IAuthState;
   httpClient: AxiosInstance;
+  prepopulatedState?: IAuthState | null;
 }
 
 export const AuthContext = createContext({} as IAuthContext);
@@ -49,11 +49,11 @@ const initialState = () => {
   return defaultState;
 };
 
-export const AuthProvider = ({
+export function AuthProvider({
   children,
-  prepopulatedState,
   httpClient,
-}: IAuthProvider) => {
+  prepopulatedState,
+}: IAuthProvider) {
   const [state, setState] = useState<IAuthState>(
     prepopulatedState || initialState
   );
@@ -200,4 +200,8 @@ export const AuthProvider = ({
       {children}
     </AuthContext.Provider>
   );
+}
+
+AuthProvider.defaultProps = {
+  prepopulatedState: null,
 };

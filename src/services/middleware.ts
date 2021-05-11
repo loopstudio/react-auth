@@ -1,4 +1,11 @@
-export const applyInterceptors = (client, session, clearSession) => {
+import { AxiosInstance } from 'axios';
+import { ISession } from '../context';
+
+export const applyInterceptors = (
+  client: AxiosInstance,
+  session: ISession | null,
+  clearSession: () => void
+) => {
   const requestInterceptor = client.interceptors.request.use((request) => {
     if (session) {
       Object.assign(request.headers, session);
@@ -25,7 +32,10 @@ export const applyInterceptors = (client, session, clearSession) => {
   return [requestInterceptor, responseInterceptor];
 };
 
-export const clearInterceptors = (client, interceptors) => {
+export const clearInterceptors = (
+  client: AxiosInstance,
+  interceptors: Array<number>
+) => {
   const [requestInterceptor, responseInterceptor] = interceptors;
 
   client.interceptors.request.eject(requestInterceptor);

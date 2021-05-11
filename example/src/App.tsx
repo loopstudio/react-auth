@@ -1,4 +1,3 @@
-import React from 'react';
 import { useAuth } from '@loopstudio/react-auth';
 import AuthForms from './components/AuthForms';
 import Welcome from './components/Welcome';
