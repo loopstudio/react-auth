@@ -2,29 +2,30 @@ import { createContext, useState, useCallback, useEffect } from 'react';
 import { AxiosInstance } from 'axios';
 import AuthService from './services/AuthService';
 import { applyInterceptors, clearInterceptors } from './services/middleware';
-
-export interface ISession {
-  accessToken: string;
-  client: string;
-  uid: string;
-}
+import {
+  IUser,
+  ISession,
+  ISignInParams,
+  ISignUpParams,
+  IUpdateUserParams,
+} from './types';
 
 interface IAuthState {
   isLoading: boolean;
   session: ISession | null;
-  user: any;
+  user: IUser | null;
 }
 
 export interface IAuthContext extends IAuthState {
   isAuthenticated: boolean;
-  signIn: (values: any) => any | void;
-  signUp: (values: any) => any | void;
-  updateUser: (values: any) => any | void;
-  signOut: () => any | void;
+  signIn: (values: ISignInParams) => void;
+  signUp: (values: ISignUpParams) => void;
+  updateUser: (values: IUpdateUserParams) => void;
+  signOut: () => void;
   clearSession: () => void;
-  requestPasswordReset: (values: any) => any | void;
-  verifyPasswordReset: (values: any) => any | void;
-  resetPassword: (pwd: any, resetPasswordToken: any) => any | void;
+  requestPasswordReset: (email: string) => void;
+  verifyPasswordReset: (token: string) => void;
+  resetPassword: (pwd: string, resetPasswordToken: string) => void;
 }
 
 interface IAuthProvider {

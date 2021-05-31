@@ -1,4 +1,5 @@
 import {AxiosInstance} from 'axios';
+import {ISignInParams, ISignUpParams, IUpdateUserParams} from '../types'
 
 class AuthService {
   static httpClient: AxiosInstance;
@@ -7,11 +8,11 @@ class AuthService {
     this.httpClient = client;
   }
 
-  static signUp(user: any) {
+  static signUp(user: ISignUpParams) {
     return this.httpClient.post('/users', { user });
   }
 
-  static signIn(user: any) {
+  static signIn(user: ISignInParams) {
     return this.httpClient.post('/users/sign_in', { user });
   }
 
@@ -23,7 +24,7 @@ class AuthService {
     return this.httpClient.get('/users/validate_token');
   }
 
-  static updateUser(user: any, passwordCheck: string) {
+  static updateUser(user: IUpdateUserParams, passwordCheck: string) {
     return this.httpClient.patch('/user', { user, passwordCheck });
   }
 

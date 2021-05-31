@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios';
-import { ISession } from '../context';
+import { ISession } from '../types';
 
 export const applyInterceptors = (
   client: AxiosInstance,

@@ -5,7 +5,7 @@ export default function Welcome() {
 
   return (
     <div>
-      <h1>Welcome {user.firstName}!</h1>
+      <h1>Welcome {user?.firstName}!</h1>
       <button type="button" onClick={signOut}>
         Sign Out
       </button>
