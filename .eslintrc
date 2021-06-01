@@ -1,4 +1,5 @@
 {
+  "root": true,
   "env": {
     "es2020": true,
     "jest": true,
@@ -6,16 +7,15 @@
     "commonjs": true
   },
   "extends": [
-    "airbnb",
+    "airbnb-typescript",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:jest-dom/recommended",
     "plugin:testing-library/react",
-    "plugin:prettier/recommended",
-    "prettier/react"
+    "plugin:react-hooks/recommended",
+    "prettier"
   ],
   "settings": {
-    "import/ignore": ["/testUtils"],
     "import/resolver": {
       "node": {
         "moduleDirectory": ["node_modules", "src/"]
@@ -23,14 +23,17 @@
     }
   },
   "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "rules": {
     "no-console": "warn",
-    "import/no-cycle": "off",
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "import/no-unresolved": ["error", { "ignore": ["^react$"] }],
     "import/prefer-default-export": "off",
-    "react/forbid-prop-types": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/jsx-filename-extension": "off",
     "prefer-promise-reject-errors": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off"
