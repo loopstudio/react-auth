@@ -1,13 +1,10 @@
 {
-  "name": "@loopstudio/react-auth",
+  "name": "loop-react-auth",
   "version": "1.0.0",
   "description": "React auth library",
   "author": "loopstudio",
   "license": "MIT",
   "repository": "git://github.com/loopstudio/react-auth",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
