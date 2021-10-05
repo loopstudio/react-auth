@@ -6,8 +6,15 @@
 
 ## Install
 
+Using npm as the package manager
+
 ```bash
 npm install --save loop-react-auth
+```
+Using yarn as the package manager
+
+```bash
+yarn add @loopstudio/react-auth
 ```
 
 ## Usage
